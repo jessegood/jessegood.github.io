@@ -1,2 +1,2 @@
 # jessegood.github.io
-Main Website
+Personal Website built with Jekyll

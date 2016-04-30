@@ -1,0 +1,19 @@
+# Site settings
+title: Translation and Programming
+email: gdjss2728@gmail.com
+description: > 
+  Personal site talking about translation with Trados and plug-in development
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://jessegood.github.io" # the base hostname & protocol for your site
+github_username:  jessegood
+
+# Build settings
+markdown: kramdown
+highlighter: pygments
+
+permalink: "/:title"
+
+excerpt_separator: <!--more-->
+paginate: 1
+
+exclude: ["node_modules", "gulpfile.js"]
