@@ -7,6 +7,9 @@ comments: true
 ---
 Introducing the Cleanup Plug-in Tool for Trados Studio 2015. <!--more-->
 
+**NOTE**: This tool is currently in Beta and undergoing testing.
+You can download and try out the tool [from here][pluginpath].
+
 * TOC
 {:toc}
 
@@ -294,3 +297,4 @@ This is somewhat limiting though, as `Cleanup Source` may affect matching. I wil
 [toolkit]:     http://appstore.sdl.com/app/sdlxliff-toolkit/296/
 [strconv]:     https://msdn.microsoft.com/en-us/library/microsoft.visualbasic.strings.strconv(v=vs.110).aspx
 [excelstrconv]:     https://msdn.microsoft.com/en-us/library/office/gg264628.aspx
+[pluginpath]:    https://github.com/jessegood/CleanupTasks
