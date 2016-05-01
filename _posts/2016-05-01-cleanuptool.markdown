@@ -1,11 +1,14 @@
 ---
 layout: post
 title:  "Cleanup Plug-in Tool"
-date:   2016-04-29 19:16:49
+date:   2016-05-01 10:30 +0900
 categories: Translation
 comments: true
 ---
 Introducing the Cleanup Plug-in Tool for Trados Studio 2015. <!--more-->
+
+* TOC
+{:toc}
 
 # 1. So what does this tool do?
 In a nutshell:
@@ -15,8 +18,7 @@ In a nutshell:
 - You can modify the source or target text as you like and create "settings" files for easy reuse
 - You can create placeholders for fixed words or phrases
 
-Some of the above is possible already with other tools, but the best part is this is a Batch Task,
-so you can run it directly in Trados.
+Some of the above is possible already with other tools, but the best part is this is a Batch Task, so you can run it directly in Trados.
 If you think any of the above may be of interest, please read on.
 
 ### New Batch Task Menu Items:
@@ -26,8 +28,7 @@ The tool adds 2 new items to your batch task menu:
 ![cleanup tool menu example](/assets/cleanuptool/cleanup-batchtask-menu.png)
 
 First I will explain about `Cleanup Source`, which is intended to be run before translation starts.
-If you want to know how to do text conversion on the target content,
-jump to [Cleanup Target and Generate Files](#cleanup-target-and-generate-files).
+If you want to know how to do text conversion on the target content, jump to [Cleanup Target and Generate Files](#cleanup-target-and-generate-files).
 
 # 2. Cleanup Source
 
@@ -95,8 +96,7 @@ Sometimes they contain inline formatting which may not be needed.
 
 I would exercise caution when removing these tags though as often times they are necessary!
 
-In the following screenshot, the `<br>` tags are used for aligning text in text boxes in the original Excel file,
-they are probably required, but there might be times when you want to remove this type of formatting.
+In the following screenshot, the `<br>` tags are used for aligning text in text boxes in the original Excel file, they are probably required, but there might be times when you want to remove this type of formatting.
 
 ![placeholder](/assets/cleanuptool/tag-remover-placeholder.png)
 
@@ -121,7 +121,7 @@ Click the "+" mark in the top right corner as shown and a new row will be added 
 
 Now, I would like to demonstrate a few use cases to show how to use the tool.
 
-#### Use Case 1: Converting wide characters to their narrow equivalent
+#### Use Case: Converting wide characters to their narrow equivalent
 
 In Japanese text, wide and narrow forms of characters are used:
 
@@ -179,7 +179,7 @@ When you turn on the `StrConv` option, the `Replace` window becomes greyed out.
 
 ### Storing conversion files for reuse
 
-One problem I have found with current solutions, is there is little ability for reuse. For example, [SDLXLIFF Toolkit][toolkit] is a great tool, but you have to retype each item you need to search for. With this tool, click `Save As` in the bottom left corner to save your settings file for later use:
+One problem I have found with current solutions, is there is little ability for reuse. For example, [SDLXLIFF Toolkit][toolkit] is a great tool, but you have to retype each item you need to search for. With this tool, click `Save As` in the bottom right corner to save your settings file for later use:
 
 ![conversion file save as](/assets/cleanuptool/conversion-file-saveas.png)
 
@@ -193,13 +193,102 @@ I would recommend creating separate conversion files based on project, or divide
 
 ### Tag Pair
 
+I actually don't know how useful this feature will be, but you can detect tag pairs in the source text and modify them.
 
+For example, in the following screenshot, I look for a `<cf highlight="yellow">` tag and replace the contents with some random text:
+
+![conversion file tag pair example](/assets/cleanuptool/conversion-file-tag-pair-example1.png)
+
+Another example is taking a tag pair and replacing it with a placeholder instead:
+
+Say you had the following made up `<inline>` tag pair in your XML file:
+
+![conversion file placeholder before](/assets/cleanuptool/conversion-file-placeholder-example1.png)
+
+With the following rule (make sure `placeholder` is turned ON!):
+
+![conversion file placeholder rule](/assets/cleanuptool/conversion-file-view-placeholder-settings-example1.png)
+
+You can turn it into a placeholder:
+
+![conversion file placeholder rule](/assets/cleanuptool/conversion-file-placeholder-example2.png)
+
+However, placeholders have a much more useful application, which will be discussed next.
+
+### Placeholders
+
+The main use case for placeholders I see is marking proper nouns, such as product or company names that never change in a translation.
+
+For example, imagine a company named `Contoso` as below:
+
+![company name example (contoso)](/assets/cleanuptool/contoso-example.png)
+
+You can mark these as placeholders with the following rule:
+
+![contonso placeholder rule example](/assets/cleanuptool/conversion-file-contoso-placeholder.png)
+
+*Note*: You can create placeholders that do not use attributes, for example in the above, I could of made the rule `<Contoso />` instead.
+However, when using elements only, you have to make sure it is a valid XML name.
+
+This will take each instance of `Contoso` and replace it with a placeholder:
+
+![contonso name example after](/assets/cleanuptool/contoso-example-after.png)
+
+However, when you do this, a few issues come up:
+
+1. You will notice it replaced `Contoso` in the third example, but left the `, Ltd`.
+In other words, you have to be careful what you replace. To fix this problem, you could create a rule that replace `Contoso, Ltd` *before* `Contoso` or use regular expression to match both versions.
+
+2. Having placeholders is great for translation purposes, but you want to return these to their original forms when generating the translation.
+This functionality is part of the next section, `Cleanup Target and Generate Files`.
 
 # 3. Cleanup Target and Generate Files
 
+This is the second batch task, which allows you to run modify text in the target and generate the target translations.
+The settings screen looks like this:
+
+![cleanup target settings](/assets/cleanuptool/cleanup-target-and-generate-files.png)
+
+## Save Folder
+
+If you want to generate the target translations when this batch task is ran, click `Generate Target`.
+You can also specify where the files will be saved. The default is the `Desktop`.
+
+![cleanup target save folder](/assets/cleanuptool/cleanup-target-save-folder.png)
+
+## Backup Folder
+
+Before generating target translations, you can save the sdlxliff files to a backup folder.
+Click `Make Backups` to make this happen. You can specify the folder to save them, and if not, by default a folder called `Cleanup Backups` is created in the project.
+
+Also, if you click `Preserve Placeholder Tags`, the backups you make will *overwrite* the original sdlxliff files in the project.
+
+### Preserve Placeholder Tags
+
+If you have been following along, under [Placeholder](#placeholders) we converted some proper nouns into placeholders.
+The problem is that when you generate the target translation, if these placeholders appear in the target segment, they will remain as a tag, or even worse be ignored completely when generating the translation.
+In order to solve this problem, any placeholders created during `Cleanup Source` will be stored in the project file so that they can be returned to text when generating the translation.
+
+It is an automatic process, but when you run `Cleanup Target and Generate Files`, if a stored placeholder is found in the target segment, it will be converted back to plain text.
+
+This is all done by convention, so if the placeholder was `<Contoso />`, it will be replaced with simply `Contoso`.
+When using attributes, the placeholder will be replaced with the contents of the attribute, so `<Locked Name="Contoso" />` will be replaced with `Contoso`.
+
+|Before|After|
+|![placedholder before](/assets/cleanuptool/placeholder-before.png)|![placedholder after](/assets/cleanuptool/contoso-after.png)|
 
 
+### Automating the Process
 
+They key to any successful translation workflow is `Automation`, the more we can automate, the more we can focus on the important stuff.
+Now for this Batch Task Plug-in, you can create a custom sequence so that this is ran automatically during project creation.
+However, there is an important point that you need to be aware of when doing this:
+
+Segments are not generated until the `Pre-Translate Files` task is ran, so you need to make sure `Cleanup Source` appears after that.
+
+This is somewhat limiting though, as `Cleanup Source` may affect matching. I will look into other options when I get a chance.
+
+![custom task sequence](/assets/cleanuptool/custom-task-sequence.png)
 
 
 [toolkit]:     http://appstore.sdl.com/app/sdlxliff-toolkit/296/

@@ -11,9 +11,13 @@ github_username:  jessegood
 markdown: kramdown
 highlighter: pygments
 
-permalink: "/:title"
+# permalink: "/:title/"
+permalink: none
 
 excerpt_separator: <!--more-->
-paginate: 1
 
 exclude: ["node_modules", "gulpfile.js"]
+
+gems: [jekyll-paginate]
+
+paginate: 1
