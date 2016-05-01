@@ -293,8 +293,24 @@ This is somewhat limiting though, as `Cleanup Source` may affect matching. I wil
 
 ![custom task sequence](/assets/cleanuptool/custom-task-sequence.png)
 
+### Reports
+
+Also, note that the tool generates reports and log files of what it does!
+
+
+The report itself (shown below) does not give very much information, only a count of each item and a path to the log file.
+The log file itself though will contain a lot more detailed information about what happened, so if you need to find out why something changed, please look at the log file.
+(I considered adding all the info about what happened to the report here, but I found the size of the report gets too large quickly.)
+
+Example:
+
+![report example](/assets/cleanuptool/report-example.png)
+
+*Note*: I wanted to create links so you can just click on it to open the log file, but I haven't figured it out.
+I asked a question on [sdl community][question] about it.
 
 [toolkit]:     http://appstore.sdl.com/app/sdlxliff-toolkit/296/
 [strconv]:     https://msdn.microsoft.com/en-us/library/microsoft.visualbasic.strings.strconv(v=vs.110).aspx
 [excelstrconv]:     https://msdn.microsoft.com/en-us/library/office/gg264628.aspx
 [pluginpath]:    https://github.com/jessegood/CleanupTasks
+[question]:     https://community.sdl.com/products-solutions/solutions/customer_experience_cloud/language/language-developers/f/57/t/7246
