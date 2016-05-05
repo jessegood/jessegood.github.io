@@ -7,8 +7,7 @@ comments: true
 ---
 Introducing the Cleanup Plug-in Tool for Trados Studio 2015. <!--more-->
 
-**NOTE**: This tool is currently in Beta and undergoing testing.
-You can download and try out the tool [from here][pluginpath].
+**NOTE**: You can download the first release [from here][pluginpath].
 
 * TOC
 {:toc}
@@ -228,14 +227,14 @@ For example, imagine a company named `Contoso` as below:
 
 You can mark these as placeholders with the following rule:
 
-![contonso placeholder rule example](/assets/cleanuptool/conversion-file-contoso-placeholder.png)
+![contoso placeholder rule example](/assets/cleanuptool/conversion-file-contoso-placeholder.png)
 
 *Note*: You can create placeholders that do not use attributes, for example in the above, I could of made the rule `<Contoso />` instead.
 However, when using elements only, you have to make sure it is a valid XML name.
 
 This will take each instance of `Contoso` and replace it with a placeholder:
 
-![contonso name example after](/assets/cleanuptool/contoso-example-after.png)
+![contoso name example after](/assets/cleanuptool/contoso-example-after.png)
 
 However, when you do this, a few issues come up:
 
@@ -278,7 +277,7 @@ This is all done by convention, so if the placeholder was `<Contoso />`, it will
 When using attributes, the placeholder will be replaced with the contents of the attribute, so `<Locked Name="Contoso" />` will be replaced with `Contoso`.
 
 |Before|After|
-|![placedholder before](/assets/cleanuptool/placeholder-before.png)|![placedholder after](/assets/cleanuptool/contoso-after.png)|
+|![placeholder before](/assets/cleanuptool/placeholder-before.png)|![placeholder after](/assets/cleanuptool/contoso-after.png)|
 
 
 ### Automating the Process
@@ -309,8 +308,30 @@ Example:
 *Note*: I wanted to create links so you can just click on it to open the log file, but I haven't figured it out.
 I asked a question on [sdl community][question] about it.
 
+# 4. Updating Formatting Attributes (Experimental Support)
+
+There is current partial (read as "very limited") support for updating formatting attributes.
+
+For example, with the following text:
+
+![highlight change before](/assets/cleanuptool/highlight-change-before.png)
+
+If you create the following rule (note how I changed `yellow` to `blue`):
+
+![highlight change rule](/assets/cleanuptool/tagpair-attribute-update-settings.png)
+
+You can update the color of the highlight:
+
+![highlight change before](/assets/cleanuptool/highlight-change-after.png)
+
+However, there are a lot of issues with this feature that need to be worked on, so I advise _against_ using it except for experimentation.
+The biggest problem stems from the fact that you need to understand the underlying file type to update the formatting in the generated target file.
+
+For anyone interested, all source code is [published here](https://github.com/jessegood/Leo.CleanUpTasks).
+
+
 [toolkit]:     http://appstore.sdl.com/app/sdlxliff-toolkit/296/
 [strconv]:     https://msdn.microsoft.com/en-us/library/microsoft.visualbasic.strings.strconv(v=vs.110).aspx
 [excelstrconv]:     https://msdn.microsoft.com/en-us/library/office/gg264628.aspx
-[pluginpath]:    https://github.com/jessegood/CleanupTasks
+[pluginpath]:    https://github.com/jessegood/Leo.CleanUpTasks/releases/tag/v1.0
 [question]:     https://community.sdl.com/products-solutions/solutions/customer_experience_cloud/language/language-developers/f/57/t/7246

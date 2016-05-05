@@ -9,7 +9,7 @@ github_username:  jessegood
 
 # Build settings
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 
 # permalink: "/:title/"
 permalink: none
