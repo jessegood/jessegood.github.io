@@ -1,0 +1,62 @@
+---
+layout: post
+title:  "Fail Safe Task Tool"
+date:   2016-05-08 10:30 +0900
+categories: Translation
+comments: true
+---
+Introducing the Fail Safe Task for Trados Studio 2015. <!--more-->
+
+**NOTE**: You can download the pre-release [from here][pluginpath].
+
+* TOC
+{:toc}
+
+# 1. What does the Fail Safe Task do?
+
+This is a very simple plug-in. All it does is verify that the target translations can be successfully translated from your sdlxliff files.
+Anybody that has worked on a large project only to find they cannot generate the target translations will probably understand how frustrating that can be.
+With this plug-in, you can verify the translations can be generated before starting a translation.
+
+# 2. How to Use
+
+Select the files you want to run it against and select `Fail Safe Task` under `Batch Tasks`.
+
+![failsafe menu](/assets/failsafetool/failsafe-menu.png)
+
+## Settings Screen
+
+There are only two options for this plug-in:
+
+![failsafe settings](/assets/failsafetool/failsafe-settings.png)
+
+* `Copy source to target and save`: This option, 1) Clears the target segments, 2) Copies the source to target, and then 3) Saves to target.
+* `Pseudo translate and save`: 1) Clears the target segments, 2) Performs a pseudo translation, and then 3) Saves to target.
+
+Note that, in both situations, the sdlxliff files these actions are performed on are only temporary.
+Basically, all the sdlxliff files are copied in advance before the task starts and then restored again after the task is complete.
+
+## Waiting
+
+One thing I should mention is, especially with a large amount of files, you may have to wait a little bit on the following screen.
+In the background, all the files are being saved to target, which takes a little time.
+
+![failsafe waiting screen](/assets/failsafetool/failsafe-waiting-screen.png)
+
+## Report
+
+Once the task finishes, a report will be generated call `Fail Safe Task`.
+
+`Passed` Example:
+
+If everything goes alright, you will see the `Passed` in green like below:
+
+![failsafe report passed](/assets/failsafetool/failsafe-report-passed.png)
+
+`Failed` Example:
+
+If something goes wrong, you should be able to see right away, as `Failed` along with a long error message in red should appear:
+
+![failsafe report failed](/assets/failsafetool/failsafe-report-failed.png)
+
+[pluginpath]:    https://github.com/jessegood/Leo.FailSafeTask/releases/tag/v1.0-beta
