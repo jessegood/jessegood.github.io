@@ -7,7 +7,7 @@ comments: true
 ---
 Introducing the Cleanup Plug-in Tool for Trados Studio 2015. <!--more-->
 
-**NOTE**: You can download the first release [from here][pluginpath].
+**NOTE**: You can download the plug-in [from here][pluginpath].
 
 * TOC
 {:toc}
@@ -18,6 +18,7 @@ In a nutshell:
 - You can lock segments based on structure or content
 - You can remove unwanted tags in the source
 - You can modify the source or target text as you like and create "settings" files for easy reuse
+- You can create tags for embedded xml or html content
 - You can create placeholders for fixed words or phrases
 
 Some of the above is possible already with other tools, but the best part is this is a Batch Task, so you can run it directly in Trados.
@@ -161,7 +162,37 @@ it probably would be more efficient to use `[Ａ-Ｚ]+` to search for groups of 
   * Regex: Use regular expression matching
   * Whole Word: Match whole words
   * Tag Pair: This is explained [below](#tag-pair)
+  * Embedded Tags: Turn this on when you want to [convert embedded tags](#embedded-tags)
   * StrConv: This is explained [next](#strconv)
+
+### Embedded Tags
+
+A common issue with translations, is handling embedded tags.
+
+For example:
+
+![embedded tags example](/assets/cleanuptool/embedded-tags.png)
+
+The cleanup tasks tool provides a way to convert these into "real" tags.
+
+You could use the following setting:
+
+![embedded tags settings](/assets/cleanuptool/embedded-tags-setting.png)
+
+The above setting will detect the `<b>` tag in the example.
+
+When you run the task on the example, it will be converted as shown below:
+
+![embedded tags after](/assets/cleanuptool/embedded-tags-after.png)
+
+*Important Note*: Note that in my example, I did not show a setting converting the `<span>` tag.
+This is important, as even though I only created a rule to detect the `<b>` tag,
+the plug-in will convert *all* tags it finds within the segment.
+
+Now, when you generate the target translations, any converted tags will be restored to their former form:
+
+![embedded tags generate target](/assets/cleanuptool/embedded-tags-generate-target.png)
+
 
 ### StrConv
 
@@ -333,5 +364,5 @@ For anyone interested, all source code is [published here](https://github.com/je
 [toolkit]:     http://appstore.sdl.com/app/sdlxliff-toolkit/296/
 [strconv]:     https://msdn.microsoft.com/en-us/library/microsoft.visualbasic.strings.strconv(v=vs.110).aspx
 [excelstrconv]:     https://msdn.microsoft.com/en-us/library/office/gg264628.aspx
-[pluginpath]:    https://github.com/jessegood/Leo.CleanUpTasks/releases/tag/v1.0
+[pluginpath]:    https://github.com/jessegood/Leo.CleanUpTasks/releases/tag/v1.1
 [question]:     https://community.sdl.com/products-solutions/solutions/customer_experience_cloud/language/language-developers/f/57/t/7246
