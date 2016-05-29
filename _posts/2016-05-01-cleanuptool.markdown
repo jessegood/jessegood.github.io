@@ -364,5 +364,5 @@ For anyone interested, all source code is [published here](https://github.com/je
 [toolkit]:     http://appstore.sdl.com/app/sdlxliff-toolkit/296/
 [strconv]:     https://msdn.microsoft.com/en-us/library/microsoft.visualbasic.strings.strconv(v=vs.110).aspx
 [excelstrconv]:     https://msdn.microsoft.com/en-us/library/office/gg264628.aspx
-[pluginpath]:    https://github.com/jessegood/Leo.CleanUpTasks/releases/tag/v1.1
+[pluginpath]:    https://github.com/jessegood/Leo.CleanUpTasks/releases/tag/v1.2
 [question]:     https://community.sdl.com/products-solutions/solutions/customer_experience_cloud/language/language-developers/f/57/t/7246
