@@ -2,12 +2,12 @@
 layout: post
 title:  "Fail Safe Task Tool"
 date:   2016-05-08 10:30 +0900
-categories: Translation
+categories: Plug-ins
 comments: true
 ---
 Introducing the Fail Safe Task for Trados Studio 2015. <!--more-->
 
-**NOTE**: You can download the pre-release [from here][pluginpath].
+**NOTE**: You can download the latest release [from here][pluginpath].
 
 * TOC
 {:toc}
@@ -59,4 +59,4 @@ If something goes wrong, you should be able to see right away, as `Failed` along
 
 ![failsafe report failed](/assets/failsafetool/failsafe-report-failed.png)
 
-[pluginpath]:    https://github.com/jessegood/Leo.FailSafeTask/releases/tag/v1.0-beta
+[pluginpath]:    https://github.com/jessegood/Leo.FailSafeTask/releases/tag/v1.1

@@ -220,12 +220,17 @@ pre {
 
 #category li {
     list-style: none;
-    border-bottom: 1px solid darken($grey-color, 30%);
     position: relative;
-    /*width: 200px;*/
 }
 
 #category li:hover {
-    background: #3d3d3d;
+    background: #cccccc;
     cursor: pointer;
+}
+
+/**
+ * Sharing buttons
+ */
+.share {
+    line-height: 10px;
 }
