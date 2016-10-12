@@ -2,7 +2,7 @@
 layout: post
 title:  "Fail Safe Task Tool"
 date:   2016-05-08 10:30 +0900
-categories: Plug-ins
+categories: Translation
 comments: true
 ---
 Introducing the Fail Safe Task for Trados Studio 2015. <!--more-->

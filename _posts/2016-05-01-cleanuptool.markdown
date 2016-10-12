@@ -2,7 +2,7 @@
 layout: post
 title:  "Cleanup Plug-in Tool"
 date:   2016-05-01 10:30 +0900
-categories: Plug-ins
+categories: Translation
 comments: true
 ---
 Introducing the Cleanup Plug-in Tool for Trados Studio 2015. <!--more-->
