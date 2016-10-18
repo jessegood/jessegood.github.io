@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "MXLIFF file type for Trados Studio"
+date:   2016-10-17 9:30 +0900
+categories: Translation
+comments: true
+---
+Introducing the MXLIFF (Memsource) file type for Trados Studio 2015. <!--more-->
+
+**NOTE**: You can download the pre-release version of the plug-in [from here][pluginpath].
+
+# So what does this file type do?
+
+If you google "MXLIFF Trados", you can find a lot of freelance translators who have clients that work with Memsource,
+but would like to do their translations in Trados Studio or memoQ.
+
+Up until now, the common workaround for Trados Studio was to changed the file extension from `.mxliff` to `.xliff`.
+However, MXLIFF files use many attributes that other tools do not understand like `m:score` or `m:locked` (all Memsource specific attributes start with an `m:`).
+
+I've developed a plug-in which you can install into Trados Studio 2015 (2014 might also work, but is untested). (See download link above)
+
+If you have any questions, bug reports, etc. please contact me by e-mail or leave a comment.
+
+[pluginpath]: https://github.com/jessegood/Leo.FileTypeSupport.MXLIFF/releases

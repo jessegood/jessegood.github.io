@@ -18,6 +18,6 @@ excerpt_separator: <!--more-->
 
 exclude: ["node_modules", "gulpfile.js"]
 
-gems: ["jekyll-paginate"]
+# gems: ["jekyll-paginate"]
 
-paginate: 1
+# paginate: 1
