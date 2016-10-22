@@ -7,7 +7,7 @@ comments: true
 ---
 Introducing the MXLIFF (Memsource) file type for Trados Studio 2015. <!--more-->
 
-**NOTE**: You can download the pre-release version of the plug-in [from here][pluginpath].
+**NOTE**: You can download the lastest version of the plug-in [from here][pluginpath].
 
 # So what does this file type do?
 
@@ -21,4 +21,4 @@ I've developed a plug-in which you can install into Trados Studio 2015 (2014 mig
 
 If you have any questions, bug reports, etc. please contact me by e-mail or leave a comment.
 
-[pluginpath]: https://github.com/jessegood/Leo.FileTypeSupport.MXLIFF/releases
+[pluginpath]: https://github.com/jessegood/Leo.FileTypeSupport.MXLIFF/releases/tag/v1.1
