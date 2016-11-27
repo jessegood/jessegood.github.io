@@ -1,0 +1,291 @@
+---
+layout: post
+title:  "Trados Studio 2017 Features and Buyer Guide"
+date:   2016-10-22 10:30 +0900
+categories: Translation
+comments: true
+---
+This post explains the new features in Trados Studio 2017...<!--more-->
+
+# About
+Trados Studio 2017 has just been released.
+The following is based on my use of Trados Studio 2017 and from hearing other people's experiences.
+Either click on the feature you want to read about below or just read from top to bottom!
+
+* TOC
+{:toc}
+
+# 1. upLIFT Fragment Recall and Fuzzy Match Repair
+
+These two features are based on [Kevin Flanagan's Lift Technology][lift] (hence the name upLIFT).
+They help to utilize sub-segments to increase translator productivity.
+
+Also, [definitely check out this article][signsandsymptoms] as it gives a great overview.
+
+## upLIFT Fragment Recall
+
+#### Description
+
+With this feature, Trados is now able match to fragments (sub-segment matches) when your TMs do not return a match.
+I'm sure all translators have experienced a time when they recognize an expression they may have saw previously, but cannot remember where they last saw it.
+This new technology should help you get the most out of your TMs by identifying fragment matches in your source text and the corresponding translation in the target text.
+
+Now, in order to use this new feature you have to upgrade your existing TMs.
+To do that, you can select `Upgrade Translation Memories` shown in the following screenshot:
+
+![upgrade translation memories](/assets/trados2017/upgrade-translation-memories.png)
+
+Then tick the box `Support fragment alignment`:
+
+![upgrade translation memories](/assets/trados2017/enable-fragment-alignment.png)
+
+As a result, you have the following new window under your translation memory settings:
+
+![tm fragment settings](/assets/trados2017/tm-fragment-settings.png)
+
+As you can see in the above settings, you have to build the translation model and align translation units.
+The TM I used also did not have the necessary amount of Translation Units (TUs) to build a model, which is why you see the warning message `Unable to build a translation model`. You need at least 1000 TUs to build a usable model. Also, at least 5000 TUs is recommended for fragment matching/recall to be effective.
+
+![fragment match window settings](/assets/trados2017/fragment-match-window.png)
+
+![fragment match settings](/assets/trados2017/fragment-match-settings.png)
+
+The above two windows show the different settings for fragment matching.
+The above settings should be the default, but if you aren't getting any results, make sure to check these settings.
+Also, by default only *whole* TUs are matched, you need to enable `TU fragment` checkbox to get fragments (this is important!).
+You may also need to adjust minimum words for a match, as with large TMs you could get back too much noise, or perhaps you need to lower the minimum match to get the most out of your TM.
+
+#### Potential Pitfalls
+There have been reports that this new functionality has boosted their productivity, so I think it has a lot of potential.
+However, I believe you should take the following into consideration also, as this is a very new technology so there is going to be some rough edges:
+
+- Some people have reported that building the TM may take a long time. I believe SDL is working on making this process much smoother, but if you have a very large TM (i.e. millions of TUs), you may have to wait many hours for the process to finish. For example, if you have hundreds of TMs, this could be unfeasible to upgrade them all. To make this task easier, check out the [Studio Migration Utility][studio migration].
+
+- Chinese and Japanese are currently not supported, as these languages are not easily tokenized (words are not separated by spaces). This is "planned" for first quarter next year, although I've heard they have
+made good progress here.
+
+- Server-based TMs are currently not supported. This is planned for first quarter next year.
+
+- AnyTM is not supported.
+
+- You have to have a TM with a least 1000 TUs for it to work. SDL also recommends that you have more than 5000 TUs in your TM for fragment matching to be effective.
+
+- The size of your TMs will increase a lot (I believe most people reported 3 or 4 times the size of the original TM). This is mostly because fragments are indexed for fast retrieval.
+In this day and age, the sizes should not be a problem with hard disk space, but is something to consider, as your TM could reach a few gigabytes!
+
+## upLIFT Fuzzy Match Repair
+
+#### Description
+
+If you are familiar with memoQ, this is very similar to the "Patch Match" feature. Basically fuzzy matches are "repaired" by using TU fragments, machine translation and terminology from your termbases.
+You will be able to recognize matches that have repaired parts by the wrench symbol you see next to the match percentage:
+
+![fuzzy match repair](/assets/trados2017/fuzzy-match-repair.png)
+
+Currently, there isn't an easy way to figure out where the repair is coming from (i.e. whether it comes from a TM, termbase or machine translation). This is being considered for a future update.
+This technology is based on the same Lift technology as upLIFT fragment recall and the settings are found under `Match Repair`:
+
+![fuzzy match repair options](/assets/trados2017/match-repair-options.png)
+
+#### Potential Pitfalls
+
+The potential pitfalls are the same as upLIFT fragment recall for the most part, but one thing I want to emphasize is these are very new technologies, so there might be some rough edges.
+Since the upLIFT technology is built on top of the already existing matching algorithms, more processing power is needed.
+I don't think this will cause problems for most people, but if you have older PC hardware, Trados may feel more laggy than before.
+Now I do believe this technology has a lot of potential, it will just take more time for this technology to mature.
+
+# 2. Single document translation workflow
+
+#### Description
+You can start translation of files with a simple right-click of the mouse.
+To do this, just right-click any file that Trados Studio supports, such as PDF, Word or XML.
+The following context menu will appear:
+
+![right click context menu](/assets/trados2017/right-click-context-menu.png)
+
+When you right-click `Translate in SDL Trados Studio`, the following window appears.
+Whichever template is set as the default will be used here and any settings you set will become the default from now on.
+
+The following window also provides a simple way to reverse the language pairs (see the tool tip in the screenshot below):
+
+![reverse language direction toggle](/assets/trados2017/toggle-language-direction.png)
+
+Also, it saves a list of recently used languages for fast access:
+
+![recently used languages](/assets/trados2017/recently-used-languages.png)
+
+#### Potential Pitfalls
+
+- One thing to keep in mind is it automatically uses whatever template you have set as the default.
+If you have customized templates you use depending on the file, you cannot select them with this option.
+
+- Another result of using the default template is any settings you change will be reflected next time you use this feature.
+You can change them back in the global settings, but if you have multiple TMs/settings you only use in certain situations.
+Then this feature can possibly get annoying.
+
+- After your file is imported into Trados and you go to save the project, the default location to save the project is not the location of the file you selected. Also, it does not create a new folder for the project.
+
+Overall, this is a nice feature when you always use the same TM/settings and work on only a few files at a time.
+In any other more complex situation, you probably will not use this feature.
+
+# 3. Drag and drop on welcome screenshot
+
+#### Description
+With this feature, a simple drag and drop window now appears in the welcome screen.
+This is related to the improvements in the single document translation workflow.
+
+![drag and drop welcome screen](/assets/trados2017/drag-n-drop-welcome-screen.png)
+
+#### Potential Pitfalls
+
+Keep in mind as the screenshot says, you can drag *files* but not *folders*!
+
+# 4. AdaptiveMT
+
+#### Description
+This is SDL's new machine translation technology. Very simply it learns from your feedback.
+Every time you confirm a segment, the system learns from your input and "adapts" to it.
+I should point out that [Lilt][lilt] was the first to market with this technology, and [they even talked about publishing a comparison][lilt AdaptiveMT].
+
+In the future I hope to publish more on how this technology works.
+However, I strongly believe this type of technology will pave the way for all future translation technology.
+Just in the last few weeks there have been many announcements of similar technology:
+
+- [Google's switch to neural machine translation][google NMT]
+
+- [Microsoft launching neural network-based translation][microsoft NMT]
+
+- [Systran announces neural machine translation in 30 languages][systran NMT]
+
+Just keep in mind that these all cost money.
+I hope to see plug-ins for Trados Studio that utilize these new technologies in the future.
+
+#### Potential Pitfalls
+
+- There is a "free package", but you are limited to one AdaptiveMT Engine. I suggest reading about the [pricing information here][adaptiveMT pricing].
+
+- As I write this article, _only_ the following language pairs are supported:
+English to French, Italian, German, Spanish and Dutch. Notice that it is only *from* English.
+
+- It's not magic! What I mean by this, is you need a basic understanding of the underlying technology to maximize its potential. For example, introducing sentences with unknown vocabulary or irregular structure can lead to poor machine translation quality. This is why you will need to maintain separate engines based on translation field or writing style.
+
+# 5. Quick preview for file types
+
+#### Description
+
+If you go to `File > Options > File Types`, you will see the following preview file options at the bottom of the window:
+
+![preview file feature](/assets/trados2017/preview-file.png)
+
+Select any file supported by Trados Studio and a window showing how the file will look in the editor will be displayed.
+Also, note that the file type that was used will be displayed in the window header after you click `Preview`:
+
+ ![preview file type](/assets/trados2017/preview-file-type.png)
+
+#### Potential Pitfalls
+
+None really. This is a very nice feature if you work with XML and are creating a custom file type or you want to see the effects of changing the file type settings.
+However, I did notice that if an error occurs trying to preview the file, it only gives you a generic error message which is not helpful.
+
+# 6. Merging across paragraph boundaries
+
+#### Description
+
+This was probably one of the most requested features from the past.
+I would write a description here, but [Paul Filkin already wrote a comprehensive article][merging paragraphs].
+
+#### Potential Pitfalls
+
+Note the default settings shown below:
+
+ ![merge segments settings](/assets/trados2017/merge-segments.png)
+
+Especially the one that says `Hide segments that have been merged`.
+
+Here is an example when I merged segments `1` and `2`. Notice how the segments numbers on the left-hand side jump from 1 to 3.
+
+ ![merge segment example 1](/assets/trados2017/merge-segments-example-before.png)
+
+Then look at the same example with the option `Hide segments that have been merged` turned off.
+ ![merge segment example 2](/assets/trados2017/merge-segments-example-after.png)
+
+As you can see, the segment still exists, but it is just locked and hidden.
+If you didn't know that, you might expect that it is possible to now merge segments `1` and `3`.
+However, due to the hidden locked segment, this is not possible since you cannot merge locked segments.
+
+# 7. Advanced display filter
+
+#### Description
+
+In the Editor view, you should see the following tab on the right-hand of the window:
+
+ ![advanced display filter](/assets/trados2017/advanced-display-filter.png)
+
+If you click the tab, the following window appears:
+
+ ![advanced display filter window](/assets/trados2017/advanced-display-filter-window.png)
+
+Up until now, you can only filter by either source or target content. With this filter, you can now filter by both source and target at the same time. Not only that, but you have much greater control over how to filter, such as filtering by the origin of the translation or document structure. Also, the filter saving can be saved and loaded so you do not have to worry about configuring them every time.
+
+#### Potential Pitfalls
+
+Not really a pitfall, but the functionality overlaps with the existing display filter. I guess you can use whichever you prefer, but it does make the new filter feel "tacked on", rather than an integrated part of the UI.
+
+Also, while you can save/load settings, this becomes cumbersome when you want to switch between different views quickly.
+
+# 8. MultiTerm 2017
+
+#### Description
+
+Here are the new features in MultiTerm 2017:
+
+- Batch Edit/Delete functions
+
+- Brand new default UI
+
+- Multiterm Administrator is now part of MultiTerm Desktop
+
+#### Potential Pitfalls
+
+You cannot use the new Multiterm Administrator to connect to older versions of Groupshare, so you still need the older version of Administrator when connecting.
+
+# 9. Groupshare 2017
+
+#### Description
+
+Groupshare 2017 has not come out yet, but from what I have heard it is a huge update.
+Here is a list of known features:
+
+- Silverlight is scrapped for a brand new HTML5/JavaScript Groupshare UI.
+
+- Through the new browser UI, you will be able to fully create/manage projects.
+
+- Ability manage/assign work from your mobile phone/device.
+
+- Ability to search through your TMs on your intranet pages.
+
+#### Potential Pitfalls
+
+Trados Studio 2014 and lower cannot connect to Groupshare 2017!
+Groupshare 2017 uses a completely new communication protocol, which is incompatible with previous versions of Trados Studio before 2015. Trados Studio 2015 will receive an update to be able to work with Groupshare 2017.
+
+This is pretty major if you have large Groupshare projects and work with external translators.
+You will have to get them to upgrade in order to work on projects.
+
+# Conclusion
+
+If your language is supported by the new fragment recall/repair or AdaptiveMT features, I definitely think it is worth upgrading to Trados Studio 2017. However, since this software just came out and a lot of this technology is new, you might run into an occasional bug or two. Also, certain areas still need to be polished to achieve a smoother user experience such as manually updating the translation model for fragment repair/recall. In that sense, waiting for a more "mature" product might save you some gray hairs.
+
+Also, with the addition of the advanced display filter and fragment matching window, the UI is starting to reach its limit. I expect the next version of Trados to get a big UI overhaul.
+
+
+[lift]: http://www.kftrans.co.uk/lift/
+[studio migration]: http://appstore.sdl.com/app/studio-migration-utility/481/
+[lilt]: https://lilt.com/
+[lilt AdaptiveMT]: https://www.linkedin.com/pulse/lilt-welcomes-sdl-adaptive-mt-market-spence-green
+[google NMT]: https://blog.google/products/translate/found-translation-more-accurate-fluent-sentences-google-translate/
+[microsoft NMT]: https://blogs.msdn.microsoft.com/translation/2016/11/15/microsoft-translator-launching-neural-network-based-translations-for-all-its-speech-languages/
+[systran NMT]: http://www.systransoft.com/systran/news-and-events/press-release/systran-announces-the-launch-of-its-purely-neural-mt-engine-a-revolution-for-the-machine-translation-market/
+[adaptiveMT pricing]: http://www.sdl.com/solution/language/translation-productivity/machine-translation/pricing.html
+[merging paragraphs]: https://multifarious.filkin.com/2016/11/21/bridging-the-divide-merging-segments/
+[signsandsymptoms]: https://signsandsymptomsoftranslation.com/2016/11/17/studio-2017-uplift/
